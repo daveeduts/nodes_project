@@ -3,6 +3,8 @@ from pyvis.network import Network
 import networkx as nx
 
 
+# Implement central node by creating node name with no attributes and links to all nodes 
+
 
 def people_names():
     
