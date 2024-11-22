@@ -25,7 +25,7 @@ def page_1():
     
     st.session_state.main_character = st.text_input("Enter your name:", "")
     st.session_state.group_count = st.number_input(
-        "How many groups do you want to add?", min_value=0, step=1
+        "How many groups do you want to add? - FOR TESTING LEAVE 0", min_value=0, step=1
     )
     st.session_state.friend_count = st.number_input(
         "How many friends do you want to add?", min_value=1, step=1
