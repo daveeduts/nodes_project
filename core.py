@@ -2,6 +2,8 @@ from itertools import combinations
 from pyvis.network import Network
 import networkx as nx
 
+
+
 def people_names():
     
     inv_pers = []
@@ -35,6 +37,7 @@ def group_names():
         
     return inv_groups
 
+
 def people_info():
 
     inv_attribute = []
@@ -58,10 +61,11 @@ def people_info():
     
     return list(zip(people, inv_attribute))
 
-def links(p_info):
-    inv_links = {}
 
-    # Use combinations to generate unique pairs
+# Calculating links between nodes based on unique combinations of people 
+def links(p_info):
+    
+    inv_links = {}
     for person_a, person_b in combinations(p_info, 2):
         name_a, _ = person_a
         name_b, _ = person_b
@@ -79,6 +83,8 @@ def links(p_info):
                 continue
     return inv_links
 
+
+# Graph builder corpus -> To update colors and weight of links
 def graph_builder():
     
     nt = Network()
@@ -94,4 +100,11 @@ def graph_builder():
     
     nt.show("network.html", notebook=False)
 
-graph_builder()
+
+def main():
+    graph_builder()
+
+
+
+if __name__ == "__main__":
+    main()
