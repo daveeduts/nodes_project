@@ -47,12 +47,11 @@ def people_info():
     people = people_names()
     groups = group_names()
 
-    for person in people:
-        
+    for i,person in enumerate(people):
+
         if len(groups) > 0:
             while True:
                 group_name = input(f"What group do you want to assign {person} to?: ")
-                
                 if group_name in groups:
                     inv_attribute.append(group_name)
                     break
@@ -90,11 +89,18 @@ def links(p_info):
 def graph_builder():
     
     nt = Network()
+    
+    ego = input("What is your name?\n")
+    nt.add_node(ego, title="Main Character Vibes", color="red")
+    
     node_info = people_info()
     link_info = links(node_info)
 
     for name, group in node_info:
-        nt.add_node(name, title=f'Group: {group}')
+        nt.add_node(name, title=f'{group}')
+    
+    for name, _ in node_info:
+        nt.add_edge(ego, name)
 
     for (p1, p2), value in link_info.items():
         if value == 1:
