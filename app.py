@@ -43,22 +43,28 @@ def page_2():
     st.title("Add Group Names")
     
     groups = []
-    all_groups_entered = True
-
     for i in range(st.session_state.group_count):
         group_name = st.text_input(f"Enter the name of group {i + 1}:", key=f"group_{i}")
-        
-        if not group_name.strip():
-            all_groups_entered = False
-        
-        groups.append(group_name)
+        groups.append(group_name.strip())
     
     if st.button("Next"):
-        if not all_groups_entered:
+        # Check for empty group names
+        if any(not name for name in groups):
             st.warning("Please enter all group names before proceeding.")
-        else: 
-            st.session_state.groups = groups
-            st.session_state.page = 3
+            return
+        
+        # Check for duplicates within group names
+        if len(groups) != len(set(groups)):
+            st.warning("Group names must be unique. Please ensure each group has a unique name.")
+            return
+
+        # Check if any group name matches the main character's name
+        if st.session_state.main_character.strip() in groups:
+            st.warning("Group names cannot be the same as the main character's name. Please choose different names.")
+            return
+        
+        st.session_state.groups = groups
+        st.session_state.page = 3
 
 
 # Page 3: Friends and Group Assignment
@@ -67,34 +73,58 @@ def page_3():
     
     friends = []
     all_friends_entered = True
+    friend_names = []
 
     # Add fields for friend names and group selection
     for i in range(st.session_state.friend_count):
-        friend_name = st.text_input(f"Enter the name of friend {i + 1}:", key=f"friend_{i}")
+        friend_name = st.text_input(f"Enter the name of friend {i + 1}:", key=f"friend_{i}").strip()
         
         # Check if name is entered
-        if not friend_name.strip():
+        if not friend_name:
             all_friends_entered = False
+        
+        friend_names.append(friend_name)
         
         # Group selection (if groups exist)
         if st.session_state.group_count > 0:
-                selected_group = st.radio(
-                    label="Select a group:",
-                    options=st.session_state.groups,
-                    key=f"group_radio_{i}"
-                )
+            st.write(f"Select a group for {friend_name}:")
+            options = ["No Group"] + st.session_state.groups
+            selected_group = st.radio(
+                label="Select a group:",
+                options=options,
+                key=f"group_radio_{i}"
+            )
+            if selected_group == "No Group":
+                selected_group = None
         else:
             selected_group = None
-            
+        
         friends.append((friend_name, [selected_group] if selected_group else []))
     
     # Prevent proceeding if not all names are entered
     if st.button("Next"):
         if not all_friends_entered:
             st.warning("Please enter all friend names before proceeding.")
-        else:
-            st.session_state.friends = friends
-            st.session_state.page = 4
+            return
+
+        # Check for duplicate friend names
+        if len(friend_names) != len(set(friend_names)):
+            st.warning("Friend names must be unique. Please make sure names are unique (including to your own!)")
+            return
+
+        # Check if any friend name matches any group name
+        overlapping_names = set(friend_names) & set(st.session_state.groups)
+        if overlapping_names:
+            st.warning(f"The following names are used for both friends and groups: {', '.join(overlapping_names)}. Please choose different names.")
+            return
+
+        # Check if any friend name matches the main character's name
+        if st.session_state.main_character.strip() in friend_names:
+            st.warning("Friend names cannot be the same as the main character's name. Please choose different names.")
+            return
+
+        st.session_state.friends = friends
+        st.session_state.page = 4
 
 
 def page_4():
