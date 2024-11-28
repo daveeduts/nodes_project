@@ -1,9 +1,11 @@
 import streamlit as st
 from pyvis.network import Network
+from resources.utils import back_button
 
 
 def page_6():
     st.markdown(f"<div class='page-5-title'>{st.session_state.main_character}'s Friendships</div>", unsafe_allow_html=True)
+    back_button() 
 
     ego = st.session_state.main_character
     friends = st.session_state.friends

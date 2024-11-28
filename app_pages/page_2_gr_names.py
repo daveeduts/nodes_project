@@ -1,7 +1,10 @@
 import streamlit as st
+from resources.utils import back_button
+
 
 def page_2():
     st.title("Add Group Names")
+    back_button() 
 
     # Properly initialize session state
     if "groups" not in st.session_state:

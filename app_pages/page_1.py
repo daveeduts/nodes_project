@@ -1,7 +1,9 @@
 import streamlit as st
 
+
 def page_1():
-    st.title("Main Character and Initial Info")
+    st.image("resources/logo.png", use_container_width=False, width=300)
+    st.markdown("<div class='page-1-title'>  Build your own network!</div>", unsafe_allow_html=True)
 
     st.session_state.main_character = st.text_input("Enter your name:", "")
     st.session_state.group_count = st.number_input("How many groups do you want to add?", min_value=0, step=1)

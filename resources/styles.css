@@ -4,6 +4,20 @@
     font-weight: bold;
 }
 
+.page-1-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom:25px;
+}
+.center-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    margin-bottom: 25px;
+}
+
 .page-5-header {
     font-size: 18px;
     font-weight: bold;
