@@ -17,10 +17,8 @@ def page_6():
     )
     st.markdown(f"<div class='page-5-title'>{st.session_state.main_character}'s Friendships</div>", unsafe_allow_html=True)
     
-    button_colls = st.columns(9)
-    with button_colls[8]: home_button()
-    with button_colls[0]: back_button()
-
+    home_button()
+    back_button()
 
     ego = st.session_state.main_character
     friends = st.session_state.friends
