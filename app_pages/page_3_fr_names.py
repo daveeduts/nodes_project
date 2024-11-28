@@ -42,6 +42,8 @@ def page_3():
             elif st.session_state.main_character.strip() in [friend[0] for friend in st.session_state.friends]:
                 st.warning("Friend names cannot match the main character's name.")
             else:
-                # Navigate to group assignment page
-                st.session_state.page = 4  # Change to the group assignment page number
+                if st.session_state.group_count == 0:
+                    st.session_state.page = 5# Navigate to group assignment page
+                else:
+                    st.session_state.page = 4  # Change to the group assignment page number
                 st.rerun()

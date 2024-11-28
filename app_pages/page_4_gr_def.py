@@ -30,6 +30,5 @@ def page_4():
         # Submit button
         submitted = st.form_submit_button("Finish Group Assignment")
         if submitted:
-            # Navigate to the next page (or complete the flow)
-            st.session_state.page = 5  # Change to the next page number
+            st.session_state.page = 5  
             st.rerun()
