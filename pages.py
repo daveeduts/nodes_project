@@ -5,6 +5,7 @@ from pyvis.network import Network
 # Helper function to set the next page
 def go_to_page(page_number):
     st.session_state.page = page_number
+    st.experimental_rerun()
 
 # Page 1: Main Character and Initial Info
 def page_1():
@@ -132,8 +133,9 @@ def page_4():
     else:
         st.button("Finish", on_click=go_to_page, args=(5,))
 
+
 def page_5():
-    st.title(f"{st.session_state.main_character}'s Friendships")
+    st.markdown(f"<div class='page-5-title'>{st.session_state.main_character}'s Friendships</div>", unsafe_allow_html=True)
 
     ego = st.session_state.main_character
     friends = st.session_state.friends
@@ -145,29 +147,32 @@ def page_5():
 
     # Collect settings in an expander under the graph
     with st.expander("Show/Hide Customizations"):
-        st.header("Visualization Settings")
-
+        
+        enable_physics = st.checkbox("Enable Physics", value=True)
+        st.markdown("<div class='page-5-header'>Visualization Settings</div>", unsafe_allow_html=True)
         # Main character node color
-        ego_color = st.color_picker("Choose Main Character Node Color", "#FF0000")
+        ego_color = st.color_picker(f"{ego}'s color", "#FF0000")
         
         # Handle group colors or a single color for all nodes
         group_colors = {}
         if groups:
-            st.subheader("Group Colors")
-            for group in groups:
-                group_colors[group] = st.color_picker(f"Color for Group: {group}", "#00FF00")
+            st.markdown("<div class='page-5-header'>Group Colors</div>", unsafe_allow_html=True)
+            columns = st.columns(3)  
+            for idx, group in enumerate(groups):
+                with columns[idx % 3]:
+                    group_colors[group] = st.color_picker(f"Color for {group}", "#00FF00")
+
         else:
-            all_nodes_color = st.color_picker("Choose Color for All Nodes", "#00FF00")
+            all_nodes_color = st.color_picker("Friends color", "#00FF00")
         
         # Node size and physics
         node_size = st.slider("Node Size", 10, 100, 25)
-        enable_physics = st.checkbox("Enable Physics", value=True)
 
         # Font customization
-        st.header("Font Customization")
+        st.markdown("<div class='page-5-header'>Font Customization</div>", unsafe_allow_html=True)
         font_color = st.color_picker("Font Color", "#000000")
         font_size = st.slider("Font Size", 10, 40, 14)
-        font_face = st.selectbox("Font Face", ["arial", "verdana", "tahoma", "times new roman"])
+        font_face = st.selectbox("Font Face", ["arial", "verdana", "tahoma", 'roboto'])
 
     # Generate the graph and display it in the placeholder
     with graph_placeholder:
