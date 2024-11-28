@@ -7,7 +7,6 @@ def page_6():
     st.image("resources/logo.png", use_container_width=False, width=300)
     st.markdown(f"<div class='page-5-title'>{st.session_state.main_character}'s Friendships</div>", unsafe_allow_html=True)
     home_button()
-    back_button() 
 
     ego = st.session_state.main_character
     friends = st.session_state.friends
