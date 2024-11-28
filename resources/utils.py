@@ -8,3 +8,9 @@ def back_button():
             else:
                 st.session_state.page -= 1
             st.rerun()
+
+def home_button():
+    if "page" in st.session_state:
+        if st.button("Home"):
+            st.session_state.page = 1
+        st.rerun()
