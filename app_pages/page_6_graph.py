@@ -1,12 +1,26 @@
 import streamlit as st
 from pyvis.network import Network
-from resources.utils import back_button, home_button
+from resources.utils import back_button, logo_base, home_button
 
 
+    
 def page_6():
-    st.image("resources/logo.png", use_container_width=False, width=300)
+    
+    image_base64 = logo_base("resources/logo.png")
+    st.markdown(
+        f"""
+        <div style="text-align: center; padding-bottom: 20px;">
+            <img src="data:image/png;base64,{image_base64}" alt="Logo" style="width: 300px;">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     st.markdown(f"<div class='page-5-title'>{st.session_state.main_character}'s Friendships</div>", unsafe_allow_html=True)
-    home_button()
+    
+    button_colls = st.columns(9)
+    with button_colls[8]: home_button()
+    with button_colls[0]: back_button()
+
 
     ego = st.session_state.main_character
     friends = st.session_state.friends
