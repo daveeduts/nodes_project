@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def page_1():
-    st.image("resources/logo.png", use_container_width=False, width=300)
+    st.image("resources/logo.png", use_container_width=False, width=250)
     st.markdown("<div class='page-1-title'>  Build your own network!</div>", unsafe_allow_html=True)
 
     st.session_state.main_character = st.text_input("Enter your name:", "")
