@@ -5,7 +5,6 @@ from app_pages.page_3_fr_names import page_3
 from app_pages.page_4_gr_def import page_4
 from app_pages.page_5_links import page_5
 from app_pages.page_6_graph import page_6
-from resources.utils import go_to_page
 
 
 with open("resources/styles.css") as f:
