@@ -1,7 +1,10 @@
 import streamlit as st
+from resources.utils import back_button
+
 
 def page_3():
     st.title("Add Friends")
+    back_button() 
 
     # Initialize `st.session_state.friends`
     if "friends" not in st.session_state:

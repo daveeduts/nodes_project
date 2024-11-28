@@ -1,8 +1,11 @@
 import streamlit as st
 from itertools import combinations
+from resources.utils import back_button
+
 
 def page_5():
     st.title("Define Friendships")
+    back_button() 
 
     links = {}
     processed_pairs = set()

@@ -1,7 +1,10 @@
 import streamlit as st
+from resources.utils import back_button
+
 
 def page_4():
     st.title("Assign Groups to Friends")
+    back_button() 
 
     # Ensure groups and friends are initialized
     if "groups" not in st.session_state or "friends" not in st.session_state:

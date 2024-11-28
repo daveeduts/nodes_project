@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit as st
 from app_pages.page_1 import page_1
 from app_pages.page_2_gr_names import page_2
 from app_pages.page_3_fr_names import page_3
@@ -8,16 +7,29 @@ from app_pages.page_5_links import page_5
 from app_pages.page_6_graph import page_6
 
 
-with open("styles.css") as f:
+with open("resources/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 
 def go_to_page(page_number):
     st.session_state.page = page_number
 
 
+def back_button():
+    if "page" in st.session_state and st.session_state.page > 1:
+        if st.button("Back"):
+            if st.session_state.page == 3 and st.session_state.group_count == 0:
+                st.session_state.page = 1  
+            elif st.session_state.page == 4 and st.session_state.group_count == 0:
+                st.session_state.page = 3  
+            else:
+                # Default: Decrement the page number
+                st.session_state.page -= 1
+
+            st.rerun()
+
 if "go_to_page" not in st.session_state:
     st.session_state.go_to_page = go_to_page
-
 
 if "page" not in st.session_state:
     st.session_state.page = 1
