@@ -7,6 +7,12 @@ from app_pages.page_5_links import page_5
 from app_pages.page_6_graph import page_6
 
 
+st.set_page_config(
+    page_title="NETRA - Network Builder",
+    page_icon="🕸️",
+    layout="centered",
+)
+
 with open("resources/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
