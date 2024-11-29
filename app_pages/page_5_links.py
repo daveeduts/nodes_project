@@ -1,5 +1,4 @@
 import streamlit as st
-from itertools import combinations
 from resources.utils import back_button
 
 

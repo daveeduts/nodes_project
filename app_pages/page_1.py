@@ -1,8 +1,17 @@
 import streamlit as st
+from resources.utils import logo_base
 
 
 def page_1():
-    st.image("resources/logo.png", use_container_width=False, width=250)
+    image_base64 = logo_base("resources/logo.png")
+    st.markdown(
+        f"""
+        <div style="text-align: left; padding-bottom: 15px;">
+            <img src="data:image/png;base64,{image_base64}" alt="Logo" style="width: 320px;">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     st.markdown("<div class='page-1-title'>  Build and see your own friendship network!</div>", unsafe_allow_html=True)
 
     st.session_state.main_character = st.text_input("Enter your name:", "")
