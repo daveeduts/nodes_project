@@ -24,6 +24,13 @@ def page_6():
     links = st.session_state.links
     groups = st.session_state.groups
 
+    
+    if 'links' in st.session_state:
+        links_dic = {
+            tuple(map(str.strip, key.split(','))): value
+            for key, value in st.session_state.links.items()
+    }
+
     # Placeholder for the graph
     graph_placeholder = st.empty()
 
@@ -101,7 +108,7 @@ def page_6():
             nt.add_edge(ego, name)
 
         # Add edges for links between friends
-        for (p1, p2), value in links.items():
+        for (p1, p2), value in links_dic.items():
             if value == 1:
                 nt.add_edge(p1, p2)
 

@@ -31,29 +31,8 @@ def page_5():
                 processed_pairs.add((option, name_a))
 
         for option in selected_connections:
-            links[tuple(sorted((name_a, option)))] = 1
+            links[f'{name_a}, {option}'] = 1
 
-    remaining_pairs = [
-        (name_a, name_b)
-        for name_a, name_b in combinations([f[0] for f in st.session_state.friends], 2)
-        if (name_a, name_b) not in processed_pairs and (name_b, name_a) not in processed_pairs
-    ]
 
-    if remaining_pairs:
-        for name_a, name_b in remaining_pairs:
-            st.write(f"Does {name_a} know {name_b}?")
-            choice = st.radio(
-                label=f"Select Yes or No for {name_a} and {name_b}",
-                options=["Yes", "No"],
-                key=f"radio_{name_a}_{name_b}",
-            )
-
-        if st.button("Next"):
-            for name_a, name_b in remaining_pairs:
-                choice = st.session_state.get(f"radio_{name_a}_{name_b}")
-                links[tuple(sorted((name_a, name_b)))] = 1 if choice == "Yes" else 0
-
-            st.session_state.links = links
-            st.session_state.go_to_page(6)
-    else:
-        st.button("Finish", on_click=st.session_state.go_to_page, args=(6,))
+    st.session_state.links = links
+    st.button("Finish", on_click=st.session_state.go_to_page, args=(6,))
