@@ -40,7 +40,7 @@ def page_6():
         enable_physics = st.checkbox("Enable Physics", value=True)
         st.markdown("<div class='page-5-header'>Visualization Settings</div>", unsafe_allow_html=True)
         # Main character node color
-        ego_color = st.color_picker(f"{ego}'s color", "#FF0000")
+        ego_color = st.color_picker(f"{ego}'s color", "#990000")
         
         # Handle group colors or a single color for all nodes
         group_colors = {}
@@ -52,7 +52,7 @@ def page_6():
                     group_colors[group] = st.color_picker(f"Color for {group}", "#00FF00")
 
         else:
-            all_nodes_color = st.color_picker("Friends color", "#00FF00")
+            all_nodes_color = st.color_picker("Friends color", "#134f5c")
         
         # Node size and physics
         node_size = st.slider("Node Size", 10, 100, 25)

@@ -1,12 +1,10 @@
 import streamlit as st
-import streamlit.components.v1 as components
 from app_pages.page_1 import page_1
 from app_pages.page_2_gr_names import page_2
 from app_pages.page_3_fr_names import page_3
 from app_pages.page_4_gr_def import page_4
 from app_pages.page_5_links import page_5
 from app_pages.page_6_graph import page_6
-from resources.utils import custom_meta
 
 
 st.set_page_config(
@@ -15,7 +13,6 @@ st.set_page_config(
     layout="centered",
 )
 
-components.html(custom_meta(), height=0)
 
 with open("resources/styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
