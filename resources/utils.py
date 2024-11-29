@@ -22,3 +22,17 @@ def home_button():
         if st.button('🏠 Home'):
             st.session_state.page = 1
             st.rerun()
+
+def custom_meta():
+    cm = """
+<head>
+    <meta name="description" content="Build your own friendship network with NETRA!">
+    <meta property="og:title" content="NETRA - Network Builder">
+    <meta property="og:description" content="Build your own friendship network with NETRA!">
+    <meta property="og:image" content="https://i.ibb.co/Xy0FM5x/app-logoo.png">
+    <meta property="og:url" content="https://net-ra.streamlit.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NETRA - Network Builder">
+</head>
+"""
+    return cm 
