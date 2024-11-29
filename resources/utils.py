@@ -19,6 +19,6 @@ def logo_base(image_path):
 
 def home_button():
     if 'page' in st.session_state:
-        if st.button('🏠'):
+        if st.button('🏠 Home'):
             st.session_state.page = 1
             st.rerun()
